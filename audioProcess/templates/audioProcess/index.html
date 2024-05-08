@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ page }} | {{ title }}</title>
+  </head>
+  <body>
+    <h1>Selamat Datang di {{ title }}</h1>
+    <h2>{{ page }}</h2>
+    <p>Website ini dibuat menggunakan Django</p>
+    <p>
+      Website ini diperuntukkan bagi Anda yang ingin melakukan
+      editing/manipulasi gambar dan audio
+    </p>
+    <ul>
+      {% for link,name in nav %}
+      <li>
+        <a href="{{ link }}">{{ name }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <table>
+        {{audio_form.as_table}}
+      </table>
+      <button type="submit">Kirim</button>
+    </form>
+  </body>
+</html>
